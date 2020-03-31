@@ -48,7 +48,10 @@ var scenes;
             });
             this.enemyManager.GetEnemies().forEach(function (enemy) {
                 if (_this.bulletManager.IsCollided(enemy)) {
-                    _this.enemyManager.RemoveEnemy(enemy);
+                    enemy.HP -= 1;
+                    if (enemy.HP <= 0) {
+                        _this.enemyManager.RemoveEnemy(enemy);
+                    }
                 }
             });
             if (this.enemyBulletManager.IsCollided(this.player)) {

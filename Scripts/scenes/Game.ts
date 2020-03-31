@@ -49,7 +49,10 @@ module scenes
             });
             this.enemyManager.GetEnemies().forEach(enemy => {
                 if (this.bulletManager.IsCollided(enemy)){
-                    this.enemyManager.RemoveEnemy(enemy)
+                    enemy.HP -= 1;
+                    if(enemy.HP <= 0){
+                        this.enemyManager.RemoveEnemy(enemy);
+                    }
                 }
             });
             if (this.enemyBulletManager.IsCollided(this.player)){

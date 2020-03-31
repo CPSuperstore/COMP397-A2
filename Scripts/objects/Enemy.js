@@ -16,8 +16,9 @@ var objects;
 (function (objects) {
     var Enemy = /** @class */ (function (_super) {
         __extends(Enemy, _super);
-        function Enemy(y) {
+        function Enemy(y, hp) {
             if (y === void 0) { y = -1; }
+            if (hp === void 0) { hp = -1; }
             var _this = _super.call(this, "./Assets/images/enemy/minion.png", 0, y, true) || this;
             _this._inPlace = false;
             _this._final_x = 1;
@@ -27,6 +28,10 @@ var objects;
             if (_this.y == -1) {
                 _this.y = _this.getRandomInt(config.Game.SCREEN_H);
             }
+            if (hp == -1) {
+                hp = _this.getRandomInt(2) + 3;
+            }
+            _this._hp = hp;
             _this.x = config.Game.SCREEN_W;
             _this._final_x = config.Game.SCREEN_W - _this.getRandomInt(100) - 64;
             _this._inPlace = false;
@@ -54,6 +59,16 @@ var objects;
             }
             return false;
         };
+        Object.defineProperty(Enemy.prototype, "HP", {
+            get: function () {
+                return this._hp;
+            },
+            set: function (hp) {
+                this._hp = hp;
+            },
+            enumerable: true,
+            configurable: true
+        });
         return Enemy;
     }(objects.GameObject));
     objects.Enemy = Enemy;

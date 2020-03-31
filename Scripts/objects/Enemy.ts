@@ -5,6 +5,7 @@ module objects{
         private _lateralVelocity=3;
         private _lastShot:number = Date.now() / 1000;
         private _shootDelay:number=0.17;
+        private _hp:number;
 
         protected _checkBounds(): void {
         }
@@ -20,11 +21,15 @@ module objects{
         }
         public Reset(): void {
         }
-        constructor(y:number=-1){
+        constructor(y:number=-1, hp:number=-1){
             super("./Assets/images/enemy/minion.png", 0, y, true);
             if (this.y == -1){
                 this.y = this.getRandomInt(config.Game.SCREEN_H);
             }
+            if (hp == -1){
+                hp = this.getRandomInt(2) + 3
+            }
+            this._hp = hp;
             this.x = config.Game.SCREEN_W;
             this._final_x = config.Game.SCREEN_W - this.getRandomInt(100) - 64;
             this._inPlace = false;
@@ -36,6 +41,12 @@ module objects{
                 return true;
             }
             return false;
+        }
+        public get HP():number{
+            return this._hp;
+        }
+        public set HP(hp:number){
+            this._hp = hp;
         }
     }
 }
