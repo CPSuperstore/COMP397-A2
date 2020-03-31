@@ -21,7 +21,7 @@ module objects{
         public Reset(): void {
         }
         constructor(y:number=-1){
-            super("./Assets/images/enemy/minion.png", 0, y, false);
+            super("./Assets/images/enemy/minion.png", 0, y, true);
             if (this.y == -1){
                 this.y = this.getRandomInt(config.Game.SCREEN_H);
             }

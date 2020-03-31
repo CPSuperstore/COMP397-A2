@@ -18,7 +18,7 @@ var objects;
         __extends(Enemy, _super);
         function Enemy(y) {
             if (y === void 0) { y = -1; }
-            var _this = _super.call(this, "./Assets/images/enemy/minion.png", 0, y, false) || this;
+            var _this = _super.call(this, "./Assets/images/enemy/minion.png", 0, y, true) || this;
             _this._inPlace = false;
             _this._final_x = 1;
             _this._lateralVelocity = 3;
