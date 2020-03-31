@@ -7,6 +7,8 @@ module objects{
         private _tilt_factor:number = 15;
         private _lastShot:number = Date.now() / 1000;
         private _shootDelay:number=0.125;
+        private _hp: number = 10;
+        private _maxHp:number;
 
         //constructor
         constructor(x:number = 50, y:number = 100){
@@ -32,7 +34,23 @@ module objects{
                         break;
                 }
             });
+
+            this._maxHp = this._hp;
+
             this.Start();
+        }
+
+        public get MaxHP():number{
+            return this._maxHp;
+        }
+        public get HP():number{
+            return this._hp;
+        }
+        public set HP(val:number){
+            this._hp = val;
+            if (this._hp < 0){
+                config.Game.SCENE_STATE = scenes.State.LOOSE;
+            }
         }
 
         public ScaleImage(factor:number){

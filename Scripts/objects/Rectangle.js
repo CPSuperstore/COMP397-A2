@@ -16,22 +16,25 @@ var objects;
 (function (objects) {
     var Rectangle = /** @class */ (function (_super) {
         __extends(Rectangle, _super);
-        /**
-         *Creates an instance of the solid colored Rectangle
-         * @param {number} x - the x position of the rectangle
-         * @param {number} y - the y position of the rectangle
-         * @param {number} w - the width of the rectangle
-         * @param {number} h - the height of the rectangle
-         * @param {string} color - the color of the rectangle
-         * @memberof Rectangle
-         */
         function Rectangle(x, y, w, h, color) {
             var _this = _super.call(this) || this;
             _this.graphics.beginFill(color);
             _this.graphics.drawRect(x, y, w, h);
             _this.graphics.endFill();
+            _this._w = w;
+            _this._h = h;
+            _this._color = color;
             return _this;
         }
+        Object.defineProperty(Rectangle.prototype, "Width", {
+            set: function (val) {
+                this.graphics.beginFill(this._color);
+                this.graphics.drawRect(this.x, this.y, val, this._h);
+                this.graphics.endFill();
+            },
+            enumerable: true,
+            configurable: true
+        });
         return Rectangle;
     }(createjs.Shape));
     objects.Rectangle = Rectangle;

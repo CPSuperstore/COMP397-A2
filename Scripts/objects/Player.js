@@ -27,6 +27,7 @@ var objects;
             _this._tilt_factor = 15;
             _this._lastShot = Date.now() / 1000;
             _this._shootDelay = 0.125;
+            _this._hp = 10;
             window.addEventListener('keyup', function (e) {
                 switch (e.code) {
                     case "KeyW":
@@ -47,9 +48,30 @@ var objects;
                         break;
                 }
             });
+            _this._maxHp = _this._hp;
             _this.Start();
             return _this;
         }
+        Object.defineProperty(Player.prototype, "MaxHP", {
+            get: function () {
+                return this._maxHp;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Player.prototype, "HP", {
+            get: function () {
+                return this._hp;
+            },
+            set: function (val) {
+                this._hp = val;
+                if (this._hp < 0) {
+                    config.Game.SCENE_STATE = scenes.State.LOOSE;
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
         Player.prototype.ScaleImage = function (factor) {
             this.scaleX = factor;
             this.scaleY = factor;

@@ -8,6 +8,8 @@ module scenes
         enemyBulletManager:managers.BulletManager;
         backgroundImage:createjs.Bitmap;
         enemyManager:managers.EnemyManager;
+        playerHealthIndicator:objects.HealthBar;
+
 
         // PUBLIC PROPERTIES
 
@@ -24,6 +26,7 @@ module scenes
             this.backgroundImage = new createjs.Bitmap("./Assets/images/background/level1.jpg");
             this.backgroundImage.scaleX = config.Game.SCREEN_H/1080;
             this.backgroundImage.scaleY = config.Game.SCREEN_H/1080;
+            this.playerHealthIndicator = new objects.HealthBar(this.player);
 
             this.Start();
         }
@@ -40,6 +43,7 @@ module scenes
             this.bulletManager.Update();
             this.enemyBulletManager.Update();
             this.enemyManager.Update();
+            this.playerHealthIndicator.Update();
 
             if (this.player.CanShoot())
                 this.bulletManager.Shoot(this.player);
@@ -56,13 +60,14 @@ module scenes
                 }
             });
             if (this.enemyBulletManager.IsCollided(this.player)){
-                console.log("ouch")
+                this.player.HP -= 1;
             }
         }
         
         public Main(): void {    
             this.addChild(this.backgroundImage);       
             this.addChild(this.player);
+            this.addChild(this.playerHealthIndicator)
         }
 
         

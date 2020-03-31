@@ -28,6 +28,7 @@ var scenes;
             _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/level1.jpg");
             _this.backgroundImage.scaleX = config.Game.SCREEN_H / 1080;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1080;
+            _this.playerHealthIndicator = new objects.HealthBar(_this.player);
             _this.Start();
             return _this;
         }
@@ -41,6 +42,7 @@ var scenes;
             this.bulletManager.Update();
             this.enemyBulletManager.Update();
             this.enemyManager.Update();
+            this.playerHealthIndicator.Update();
             if (this.player.CanShoot())
                 this.bulletManager.Shoot(this.player);
             this.enemyManager.GetShootableEnemies().forEach(function (enemy) {
@@ -55,12 +57,13 @@ var scenes;
                 }
             });
             if (this.enemyBulletManager.IsCollided(this.player)) {
-                console.log("ouch");
+                this.player.HP -= 1;
             }
         };
         Game.prototype.Main = function () {
             this.addChild(this.backgroundImage);
             this.addChild(this.player);
+            this.addChild(this.playerHealthIndicator);
         };
         return Game;
     }(objects.Scene));
