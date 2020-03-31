@@ -141,5 +141,9 @@ module objects
         public get ImagePath(): string{
             return this._imagePath;
         }
+
+        public getRandomInt(max:number) {
+            return Math.floor(Math.random() * Math.floor(max));
+          }
     }
 }

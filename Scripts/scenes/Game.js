@@ -23,6 +23,8 @@ var scenes;
             // initialization
             _this.player = new objects.Player();
             _this.bulletManager = new managers.BulletManager(_this);
+            _this.enemyBulletManager = new managers.BulletManager(_this);
+            _this.enemyManager = new managers.EnemyManager(_this);
             _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/level1.jpg");
             _this.backgroundImage.scaleX = config.Game.SCREEN_H / 1080;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1080;
@@ -34,10 +36,24 @@ var scenes;
             this.Main();
         };
         Game.prototype.Update = function () {
+            var _this = this;
             this.player.Update();
             this.bulletManager.Update();
+            this.enemyBulletManager.Update();
+            this.enemyManager.Update();
             if (this.player.CanShoot())
                 this.bulletManager.Shoot(this.player);
+            this.enemyManager.GetShootableEnemies().forEach(function (enemy) {
+                _this.enemyBulletManager.Shoot(enemy);
+            });
+            this.enemyManager.GetEnemies().forEach(function (enemy) {
+                if (_this.bulletManager.IsCollided(enemy)) {
+                    _this.enemyManager.RemoveEnemy(enemy);
+                }
+            });
+            if (this.enemyBulletManager.IsCollided(this.player)) {
+                console.log("ouch");
+            }
         };
         Game.prototype.Main = function () {
             this.addChild(this.backgroundImage);

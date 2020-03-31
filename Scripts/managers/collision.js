@@ -17,29 +17,19 @@ var managers;
             }
         };
         Collision.AABBCheck = function (object1, object2) {
-            var object1Offset = new objects.Vector2(0, 0);
-            var object2Offset = new objects.Vector2(0, 0);
+            var x1 = object1.x;
+            var y1 = object1.y;
+            var x2 = object2.x;
+            var y2 = object2.y;
             if (object1.isCentered) {
-                object1Offset.x = object1.halfWidth;
-                object1Offset.y = object1.halfHeight;
+                x1 -= object1.halfWidth;
+                y1 -= object1.halfHeight;
             }
             if (object2.isCentered) {
-                object2Offset.x = object2.halfWidth;
-                object2Offset.y = object2.halfHeight;
+                x2 -= object2.halfWidth;
+                y2 -= object2.halfHeight;
             }
-            var object1TopLeft = objects.Vector2.subtract(object1.position, object1Offset);
-            var object2TopLeft = objects.Vector2.subtract(object2.position, object2Offset);
-            if (object1TopLeft.x < object2TopLeft.x + object2.width &&
-                object1TopLeft.x + object1.width > object2TopLeft.x &&
-                object1TopLeft.y < object2TopLeft.y + object2.height &&
-                object1TopLeft.y + object1.height > object2TopLeft.y) {
-                if (!object2.isColliding) {
-                    object2.isColliding = true;
-                }
-            }
-            else {
-                object2.isColliding = false;
-            }
+            return x1 < x2 + object2.width && x1 + object1.width > x2 && y1 < y2 + object2.height && y1 + object1.height > y2;
         };
         return Collision;
     }());

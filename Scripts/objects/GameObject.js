@@ -142,6 +142,9 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        GameObject.prototype.getRandomInt = function (max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        };
         return GameObject;
     }(createjs.Bitmap));
     objects.GameObject = GameObject;

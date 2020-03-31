@@ -19,10 +19,22 @@ module managers
             this._bullets.splice(this._bullets.indexOf(b), 1);
         }
 
+        public IsCollided(other:objects.GameObject):boolean{
+            let returnValue = false;
+            this._bullets.forEach(bullet => {
+                if(managers.Collision.AABBCheck(bullet, other)){
+                    returnValue = true;
+                    this.RemoveBullet(bullet);
+                    returnValue = true;
+                }
+            });
+            return returnValue;
+        }
+
         public Update(){
             this._bullets.forEach(bullet => {
                 bullet.Update();
-                if(bullet.x > config.Game.SCREEN_W){
+                if(bullet.x > config.Game.SCREEN_W || bullet.x < 0){
                     this.RemoveBullet(bullet);
                 }
             });
