@@ -6,7 +6,7 @@ var config;
         }
         Game.SCREEN_W = 640;
         Game.SCREEN_H = 480;
-        Game.SCORE = 0;
+        Game.SCORE = 100;
         return Game;
     }());
     config.Game = Game;

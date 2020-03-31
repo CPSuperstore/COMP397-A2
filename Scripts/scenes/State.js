@@ -8,7 +8,8 @@ var scenes;
         State[State["GAME"] = 1] = "GAME";
         State[State["END"] = 2] = "END";
         State[State["LOOSE"] = 3] = "LOOSE";
-        State[State["NUM_OF_SCENES"] = 4] = "NUM_OF_SCENES";
+        State[State["LOCK_PICK"] = 4] = "LOCK_PICK";
+        State[State["NUM_OF_SCENES"] = 5] = "NUM_OF_SCENES";
     })(State = scenes.State || (scenes.State = {}));
 })(scenes || (scenes = {}));
 //# sourceMappingURL=State.js.map

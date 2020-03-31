@@ -59,6 +59,9 @@ module scenes
                         if (config.Game.SCORE % 10 == 0){
                             this.enemyManager.EnemyCap += 1;
                         }
+                        if (config.Game.SCORE >= 100){
+                            config.Game.SCENE_STATE = scenes.State.LOCK_PICK;
+                        }
                     }
                 }
             });

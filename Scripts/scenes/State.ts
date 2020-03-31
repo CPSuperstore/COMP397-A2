@@ -7,6 +7,7 @@ module scenes
         GAME,
         END,
         LOOSE,
+        LOCK_PICK,
         NUM_OF_SCENES
     }
 }

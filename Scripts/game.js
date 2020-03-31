@@ -50,6 +50,9 @@ var game = (function () {
             case scenes.State.GAME:
                 currentScene = new scenes.Game();
                 break;
+            case scenes.State.LOCK_PICK:
+                currentScene = new scenes.LockPick();
+                break;
             case scenes.State.END:
                 currentScene = new scenes.End();
                 break;
