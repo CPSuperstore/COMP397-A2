@@ -35,7 +35,7 @@ var scenes;
         Start.prototype.Main = function () {
             this.addChild(this.play);
             this.play.on("click", function () {
-                config.Game.SCENE_STATE = scenes.State.LOCK_PICK;
+                config.Game.SCENE_STATE = scenes.State.GAME;
             });
         };
         return Start;

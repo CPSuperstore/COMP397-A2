@@ -56,10 +56,10 @@ module scenes
                     if(enemy.HP <= 0){
                         this.enemyManager.RemoveEnemy(enemy);
                         config.Game.SCORE++;
-                        if (config.Game.SCORE % 10 == 0){
+                        if (config.Game.SCORE % 5 == 0){
                             this.enemyManager.EnemyCap += 1;
                         }
-                        if (config.Game.SCORE >= 100){
+                        if (config.Game.SCORE >= 20){
                             config.Game.SCENE_STATE = scenes.State.LOCK_PICK;
                         }
                     }
