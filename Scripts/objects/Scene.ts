@@ -3,10 +3,10 @@ module objects
     export abstract class Scene extends createjs.Container
     {
         private isActive = false;
+
         constructor()
         {
             super();
-
             //this.Start();
         }
 

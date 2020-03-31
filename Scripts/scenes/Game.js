@@ -21,25 +21,27 @@ var scenes;
         function Game() {
             var _this = _super.call(this) || this;
             // initialization
-            _this.gameLabel = new objects.Label();
-            _this.nextButton = new objects.Button();
+            _this.player = new objects.Player();
+            _this.bulletManager = new managers.BulletManager(_this);
+            _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/level1.jpg");
+            _this.backgroundImage.scaleX = config.Game.SCREEN_H / 1080;
+            _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1080;
             _this.Start();
             return _this;
         }
         // PUBLIC METHODS
         Game.prototype.Start = function () {
-            this.gameLabel = new objects.Label("The Game", "80px", "Arial", "Black", 320, 200, true);
-            this.nextButton = new objects.Button("./Assets/images/nextButton.png", 320, 400, true);
             this.Main();
         };
         Game.prototype.Update = function () {
+            this.player.Update();
+            this.bulletManager.Update();
+            if (this.player.CanShoot())
+                this.bulletManager.Shoot(this.player);
         };
         Game.prototype.Main = function () {
-            this.addChild(this.gameLabel);
-            this.addChild(this.nextButton);
-            this.nextButton.on("click", function () {
-                config.Game.SCENE_STATE = scenes.State.END;
-            });
+            this.addChild(this.backgroundImage);
+            this.addChild(this.player);
         };
         return Game;
     }(objects.Scene));
