@@ -9,8 +9,7 @@ module scenes
         backgroundImage:createjs.Bitmap;
         enemyManager:managers.EnemyManager;
         playerHealthIndicator:objects.HealthBar;
-
-
+        spawned:boolean = false;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -56,6 +55,10 @@ module scenes
                     enemy.HP -= 1;
                     if(enemy.HP <= 0){
                         this.enemyManager.RemoveEnemy(enemy);
+                        config.Game.SCORE++;
+                        if (config.Game.SCORE % 10 == 0){
+                            this.enemyManager.EnemyCap += 1;
+                        }
                     }
                 }
             });

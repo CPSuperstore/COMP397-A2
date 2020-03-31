@@ -27,7 +27,7 @@ var objects;
             _this._tilt_factor = 15;
             _this._lastShot = Date.now() / 1000;
             _this._shootDelay = 0.125;
-            _this._hp = 10;
+            _this._hp = 30;
             window.addEventListener('keyup', function (e) {
                 switch (e.code) {
                     case "KeyW":

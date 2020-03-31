@@ -7,7 +7,7 @@ module objects{
         private _tilt_factor:number = 15;
         private _lastShot:number = Date.now() / 1000;
         private _shootDelay:number=0.125;
-        private _hp: number = 10;
+        private _hp: number = 30;
         private _maxHp:number;
 
         //constructor

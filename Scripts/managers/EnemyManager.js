@@ -4,7 +4,7 @@ var managers;
     var EnemyManager = /** @class */ (function () {
         function EnemyManager(stage) {
             this._enemies = [];
-            this._enemyCap = 3;
+            this._enemyCap = 2;
             this._stage = stage;
         }
         EnemyManager.prototype.SpawnEnemy = function (y) {
@@ -36,6 +36,16 @@ var managers;
         EnemyManager.prototype.GetEnemies = function () {
             return this._enemies;
         };
+        Object.defineProperty(EnemyManager.prototype, "EnemyCap", {
+            get: function () {
+                return this._enemyCap;
+            },
+            set: function (val) {
+                this._enemyCap = val;
+            },
+            enumerable: true,
+            configurable: true
+        });
         return EnemyManager;
     }());
     managers.EnemyManager = EnemyManager;

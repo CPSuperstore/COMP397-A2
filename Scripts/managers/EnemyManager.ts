@@ -3,7 +3,7 @@ module managers
     export class EnemyManager{
         private _enemies:objects.Enemy[] = [];
         private _stage:objects.Scene;
-        private _enemyCap:number=3;
+        private _enemyCap:number=2;
 
         constructor(stage:objects.Scene){
             this._stage = stage;
@@ -40,6 +40,13 @@ module managers
 
         public GetEnemies():objects.Enemy[]{
             return this._enemies;
+        }
+
+        public get EnemyCap(){
+            return this._enemyCap;
+        }
+        public set EnemyCap(val:number){
+            this._enemyCap = val;
         }
     }
 }

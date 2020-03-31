@@ -20,6 +20,7 @@ var scenes;
         // CONSTRUCTOR
         function Game() {
             var _this = _super.call(this) || this;
+            _this.spawned = false;
             // initialization
             _this.player = new objects.Player();
             _this.bulletManager = new managers.BulletManager(_this);
@@ -53,6 +54,10 @@ var scenes;
                     enemy.HP -= 1;
                     if (enemy.HP <= 0) {
                         _this.enemyManager.RemoveEnemy(enemy);
+                        config.Game.SCORE++;
+                        if (config.Game.SCORE % 10 == 0) {
+                            _this.enemyManager.EnemyCap += 1;
+                        }
                     }
                 }
             });
