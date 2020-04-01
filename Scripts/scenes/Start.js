@@ -24,7 +24,8 @@ var scenes;
             _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/menu.png");
             _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1500;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1125;
-            _this.play = new objects.Button("./Assets/images/startButton.png", 320, 240, true);
+            _this.play = new objects.Button("./Assets/images/gui/start.png", 320, 240, true);
+            _this.instructions = new objects.Button("./Assets/images/gui/instructions.png", 320, 300, true);
             _this.Start();
             return _this;
         }
@@ -37,8 +38,12 @@ var scenes;
         Start.prototype.Main = function () {
             this.addChild(this.backgroundImage);
             this.addChild(this.play);
+            this.addChild(this.instructions);
             this.play.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.GAME;
+            });
+            this.instructions.on("click", function () {
+                config.Game.SCENE_STATE = scenes.State.INSTRUCTIONS;
             });
         };
         return Start;

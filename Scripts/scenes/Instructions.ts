@@ -1,10 +1,10 @@
 module scenes
 {
-    export class End extends objects.Scene
+    export class Instructions extends objects.Scene
     {
         // PRIVATE INSTANCE MEMBERS
+        titleLabel:objects.Label;
         endButton:objects.Button;
-        backgroundImage:createjs.Bitmap;
 
         // PUBLIC PROPERTIES
 
@@ -13,12 +13,8 @@ module scenes
         {
             super();
 
-            // initialization
-            this.endButton = new objects.Button("./Assets/images/gui/back.png", 320, 400, true);
-
-            this.backgroundImage = new createjs.Bitmap("./Assets/images/background/win.png");    
-            this.backgroundImage.scaleX = config.Game.SCREEN_W/1500;
-            this.backgroundImage.scaleY = config.Game.SCREEN_H/1125;
+            this.titleLabel = new objects.Label("Instructions", "80px","Arial", "Black", 320, 50, true);
+            this.endButton = new objects.Button("./Assets/images/gui/back.png", 320, 450, true);
 
             this.Start();
         }
@@ -27,7 +23,6 @@ module scenes
 
         public Start(): void 
         {
-
             this.Main();
         }        
         
@@ -36,15 +31,12 @@ module scenes
         }
         
         public Main(): void {
-            this.addChild(this.backgroundImage);
-    
+            this.addChild(this.titleLabel);
             this.addChild(this.endButton);
     
             this.endButton.on("click", function() {
                config.Game.SCENE_STATE = scenes.State.START;
             });
-        }
-
-        
+        }        
     }
 }

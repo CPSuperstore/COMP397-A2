@@ -17,7 +17,7 @@ module scenes
 
             // initialization
             this.endLabel = new objects.Label("You Failed!", "80px","Arial", "Black", 320, 50, true);
-            this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 450, true);
+            this.endButton = new objects.Button("./Assets/images/gui/back.png", 320, 450, true);
             this.mouseyJail = new objects.Image("./Assets/images/sidekick/mouseyJail.png", config.Game.SCREEN_W / 2, config.Game.SCREEN_H / 2, true);
 
             this.backgroundImage = new createjs.Bitmap("./Assets/images/background/failed.jpg");    

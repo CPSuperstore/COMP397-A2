@@ -8,6 +8,7 @@ module scenes
         END,
         LOOSE,
         LOCK_PICK,
+        INSTRUCTIONS,
         NUM_OF_SCENES
     }
 }

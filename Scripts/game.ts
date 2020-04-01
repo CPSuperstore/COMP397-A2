@@ -72,6 +72,9 @@ let game = (function(){
             case scenes.State.LOOSE:
                 currentScene = new scenes.Loose();
                 break;
+            case scenes.State.INSTRUCTIONS:
+                currentScene = new scenes.Instructions();
+                break;
         }
         // add the scene to the stage and setup the current scene
         stage.addChild(currentScene);

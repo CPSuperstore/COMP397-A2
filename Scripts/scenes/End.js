@@ -21,7 +21,7 @@ var scenes;
         function End() {
             var _this = _super.call(this) || this;
             // initialization
-            _this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 400, true);
+            _this.endButton = new objects.Button("./Assets/images/gui/back.png", 320, 400, true);
             _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/win.png");
             _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1500;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1125;
