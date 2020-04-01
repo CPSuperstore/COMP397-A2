@@ -77,16 +77,16 @@ module scenes
                     this.lockPins.forEach(pin => {
                         if(pin.x - pin.halfWidth < this.claw.x && this.claw.x < pin.x + pin.halfWidth){
                             this.lockPins.splice(this.lockPins.indexOf(pin), 1);
+                            let multiplier = 1;
+                            if (this.clawVelocity < 0){
+                                multiplier = -1;
+                            }
+                            this.clawVelocity += 1 * multiplier;
                         }
                     });
                     if (this.lockPins.length == 0){
                         config.Game.SCENE_STATE = scenes.State.END;
                     }
-                    let multiplier = 1;
-                    if (this.clawVelocity < 0){
-                        multiplier = -1;
-                    }
-                    this.clawVelocity += 1 * multiplier;
                 }
             }
             if (this.claw.x <= this.clawMin || this.claw.x >= this.clawMax){

@@ -75,16 +75,16 @@ var scenes;
                     this.lockPins.forEach(function (pin) {
                         if (pin.x - pin.halfWidth < _this.claw.x && _this.claw.x < pin.x + pin.halfWidth) {
                             _this.lockPins.splice(_this.lockPins.indexOf(pin), 1);
+                            var multiplier = 1;
+                            if (_this.clawVelocity < 0) {
+                                multiplier = -1;
+                            }
+                            _this.clawVelocity += 1 * multiplier;
                         }
                     });
                     if (this.lockPins.length == 0) {
                         config.Game.SCENE_STATE = scenes.State.END;
                     }
-                    var multiplier = 1;
-                    if (this.clawVelocity < 0) {
-                        multiplier = -1;
-                    }
-                    this.clawVelocity += 1 * multiplier;
                 }
             }
             if (this.claw.x <= this.clawMin || this.claw.x >= this.clawMax) {
