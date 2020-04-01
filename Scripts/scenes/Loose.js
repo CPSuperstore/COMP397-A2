@@ -21,21 +21,25 @@ var scenes;
         function Loose() {
             var _this = _super.call(this) || this;
             // initialization
-            _this.endLabel = new objects.Label();
-            _this.endButton = new objects.Button();
+            _this.endLabel = new objects.Label("You Failed!", "80px", "Arial", "Black", 320, 50, true);
+            _this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 450, true);
+            _this.mouseyJail = new objects.Image("./Assets/images/sidekick/mouseyJail.png", config.Game.SCREEN_W / 2, config.Game.SCREEN_H / 2, true);
+            _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/failed.jpg");
+            _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1024;
+            _this.backgroundImage.scaleY = config.Game.SCREEN_H / 600;
             _this.Start();
             return _this;
         }
         // PUBLIC METHODS
         Loose.prototype.Start = function () {
-            this.endLabel = new objects.Label("You Loose", "80px", "Arial", "Black", 320, 200, true);
-            this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 400, true);
             this.Main();
         };
         Loose.prototype.Update = function () {
         };
         Loose.prototype.Main = function () {
+            this.addChild(this.backgroundImage);
             this.addChild(this.endLabel);
+            this.addChild(this.mouseyJail);
             this.addChild(this.endButton);
             this.endButton.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.START;

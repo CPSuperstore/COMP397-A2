@@ -24,7 +24,7 @@ module objects{
         constructor(y:number=-1, hp:number=-1){
             super("./Assets/images/enemy/minion.png", 0, y, true);
             if (this.y == -1){
-                this.y = this.getRandomInt(config.Game.SCREEN_H);
+                this.y = this.getRandomInt(config.Game.SCREEN_H - 64) + 32;
             }
             if (hp == -1){
                 hp = this.getRandomInt(2) + 3

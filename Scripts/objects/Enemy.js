@@ -26,7 +26,7 @@ var objects;
             _this._lastShot = Date.now() / 1000;
             _this._shootDelay = 0.17;
             if (_this.y == -1) {
-                _this.y = _this.getRandomInt(config.Game.SCREEN_H);
+                _this.y = _this.getRandomInt(config.Game.SCREEN_H - 64) + 32;
             }
             if (hp == -1) {
                 hp = _this.getRandomInt(2) + 3;

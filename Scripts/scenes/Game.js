@@ -22,6 +22,9 @@ var scenes;
             var _this = _super.call(this) || this;
             _this.spawned = false;
             // initialization
+            _this.backgroundManager = new managers.BackgroundManager([
+                new createjs.Bitmap("./Assets/images/background/game1.png"), new createjs.Bitmap("./Assets/images/background/game2.png")
+            ], _this);
             _this.player = new objects.Player();
             _this.bulletManager = new managers.BulletManager(_this);
             _this.enemyBulletManager = new managers.BulletManager(_this);
@@ -39,6 +42,7 @@ var scenes;
         };
         Game.prototype.Update = function () {
             var _this = this;
+            this.backgroundManager.Update();
             this.player.Update();
             this.bulletManager.Update();
             this.enemyBulletManager.Update();
@@ -69,7 +73,7 @@ var scenes;
             }
         };
         Game.prototype.Main = function () {
-            this.addChild(this.backgroundImage);
+            // this.addChild(this.backgroundImage);       
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator);
         };

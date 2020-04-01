@@ -10,6 +10,7 @@ module scenes
         enemyManager:managers.EnemyManager;
         playerHealthIndicator:objects.HealthBar;
         spawned:boolean = false;
+        backgroundManager:managers.BackgroundManager;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -18,6 +19,11 @@ module scenes
             super();
 
             // initialization
+            this.backgroundManager = new managers.BackgroundManager(
+                [
+                    new createjs.Bitmap("./Assets/images/background/game1.png"), new createjs.Bitmap("./Assets/images/background/game2.png")
+                ], this
+            );
             this.player = new objects.Player();
             this.bulletManager = new managers.BulletManager(this);
             this.enemyBulletManager = new managers.BulletManager(this);
@@ -38,6 +44,7 @@ module scenes
         }        
         
         public Update(): void {
+            this.backgroundManager.Update();
             this.player.Update();
             this.bulletManager.Update();
             this.enemyBulletManager.Update();
@@ -71,7 +78,7 @@ module scenes
         }
         
         public Main(): void {    
-            this.addChild(this.backgroundImage);       
+            // this.addChild(this.backgroundImage);       
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator)
         }

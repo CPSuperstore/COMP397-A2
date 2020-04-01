@@ -21,21 +21,24 @@ var scenes;
         function Start() {
             var _this = _super.call(this) || this;
             // initialization
-            _this.play = new objects.Button();
+            _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/menu.png");
+            _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1500;
+            _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1125;
+            _this.play = new objects.Button("./Assets/images/startButton.png", 320, 240, true);
             _this.Start();
             return _this;
         }
         // PUBLIC METHODS
         Start.prototype.Start = function () {
-            this.play = new objects.Button("./Assets/images/startButton.png", 320, 240, true);
             this.Main();
         };
         Start.prototype.Update = function () {
         };
         Start.prototype.Main = function () {
+            this.addChild(this.backgroundImage);
             this.addChild(this.play);
             this.play.on("click", function () {
-                config.Game.SCENE_STATE = scenes.State.GAME;
+                config.Game.SCENE_STATE = scenes.State.LOOSE;
             });
         };
         return Start;
