@@ -12,6 +12,7 @@ module scenes
         spawned:boolean = false;
         backgroundManager:managers.BackgroundManager;
         scoreCounter:objects.Label;
+        powerUps:objects.Powerup[] = [];
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -40,6 +41,12 @@ module scenes
             this.Start();
         }
 
+        public SpawnPowerup(){
+            let pu = new objects.Powerup()
+            this.addChild(pu);
+            this.powerUps.push(pu)
+        }
+
         // PUBLIC METHODS
 
         public Start(): void 
@@ -55,6 +62,18 @@ module scenes
             this.enemyManager.Update();
             this.playerHealthIndicator.Update();
 
+            this.powerUps.forEach(pu => {
+                pu.Update();
+                if (managers.Collision.AABBCheck(pu, this.player)){
+                    this.player.HP += 10;
+                    if (this.player.HP > this.player.MaxHP)
+                        this.player.HP = this.player.MaxHP
+                    
+                    this.removeChild(pu);
+                    this.powerUps.splice(this.powerUps.indexOf(pu), 1);
+                }
+            });
+
             if (this.player.CanShoot())
                 this.bulletManager.Shoot(this.player);
 
@@ -69,8 +88,9 @@ module scenes
                         config.Game.SCORE++;
                         if (config.Game.SCORE % 5 == 0){
                             this.enemyManager.EnemyCap += 1;
+                            this.SpawnPowerup();
                         }
-                        if (config.Game.SCORE >= 20){
+                        if (config.Game.SCORE >= 50){
                             config.Game.SCENE_STATE = scenes.State.LOCK_PICK;
                         }
                     }
@@ -88,7 +108,5 @@ module scenes
             this.addChild(this.playerHealthIndicator)
             this.addChild(this.scoreCounter)
         }
-
-        
     }
 }

@@ -21,6 +21,7 @@ var scenes;
         function Game() {
             var _this = _super.call(this) || this;
             _this.spawned = false;
+            _this.powerUps = [];
             // initialization
             _this.backgroundManager = new managers.BackgroundManager([
                 new createjs.Bitmap("./Assets/images/background/game1.png"), new createjs.Bitmap("./Assets/images/background/game2.png")
@@ -38,6 +39,11 @@ var scenes;
             _this.Start();
             return _this;
         }
+        Game.prototype.SpawnPowerup = function () {
+            var pu = new objects.Powerup();
+            this.addChild(pu);
+            this.powerUps.push(pu);
+        };
         // PUBLIC METHODS
         Game.prototype.Start = function () {
             this.Main();
@@ -50,6 +56,16 @@ var scenes;
             this.enemyBulletManager.Update();
             this.enemyManager.Update();
             this.playerHealthIndicator.Update();
+            this.powerUps.forEach(function (pu) {
+                pu.Update();
+                if (managers.Collision.AABBCheck(pu, _this.player)) {
+                    _this.player.HP += 10;
+                    if (_this.player.HP > _this.player.MaxHP)
+                        _this.player.HP = _this.player.MaxHP;
+                    _this.removeChild(pu);
+                    _this.powerUps.splice(_this.powerUps.indexOf(pu), 1);
+                }
+            });
             if (this.player.CanShoot())
                 this.bulletManager.Shoot(this.player);
             this.enemyManager.GetShootableEnemies().forEach(function (enemy) {
@@ -63,8 +79,9 @@ var scenes;
                         config.Game.SCORE++;
                         if (config.Game.SCORE % 5 == 0) {
                             _this.enemyManager.EnemyCap += 1;
+                            _this.SpawnPowerup();
                         }
-                        if (config.Game.SCORE >= 20) {
+                        if (config.Game.SCORE >= 50) {
                             config.Game.SCENE_STATE = scenes.State.LOCK_PICK;
                         }
                     }
