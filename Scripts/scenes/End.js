@@ -21,21 +21,21 @@ var scenes;
         function End() {
             var _this = _super.call(this) || this;
             // initialization
-            _this.endLabel = new objects.Label();
-            _this.endButton = new objects.Button();
+            _this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 400, true);
+            _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/win.png");
+            _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1500;
+            _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1125;
             _this.Start();
             return _this;
         }
         // PUBLIC METHODS
         End.prototype.Start = function () {
-            this.endLabel = new objects.Label("You Win", "80px", "Arial", "Black", 320, 200, true);
-            this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 400, true);
             this.Main();
         };
         End.prototype.Update = function () {
         };
         End.prototype.Main = function () {
-            this.addChild(this.endLabel);
+            this.addChild(this.backgroundImage);
             this.addChild(this.endButton);
             this.endButton.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.START;

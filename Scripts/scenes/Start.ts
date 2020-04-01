@@ -36,7 +36,7 @@ module scenes
             this.addChild(this.play);
     
             this.play.on("click", function() {
-               config.Game.SCENE_STATE = scenes.State.LOOSE;
+               config.Game.SCENE_STATE = scenes.State.GAME;
             });  
         }        
     }

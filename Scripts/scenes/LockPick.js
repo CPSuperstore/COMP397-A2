@@ -25,7 +25,7 @@ var scenes;
             _this.clawVelocity = 3;
             _this.clawVVelocity = 3;
             _this.clawMoving = true;
-            _this.instructionLabel = new objects.Label("Break Mousey Out Of Jail By Picking The Lock", "20px", "Arial", "Black", config.Game.SCREEN_W / 2, 30, true);
+            _this.instructionLabel = new objects.Label("Break Mousey Out Of Jail By Picking The Lock", "20px", "Arial", "White", config.Game.SCREEN_W / 2, 30, true);
             _this.mouseyJail = new objects.Image("./Assets/images/sidekick/mouseyJail.png", config.Game.SCREEN_W / 2, 175, true);
             _this.lockBackground = new objects.Image("./Assets/images/lock/background.png", config.Game.SCREEN_W / 2, 390, true);
             _this.lockPins = [
@@ -35,6 +35,9 @@ var scenes;
                 new objects.LockPin(409, 310)
             ];
             _this.claw = new objects.Image("./Assets/images/player/claw.png", 300, 400, false);
+            _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/lockPick.jpg");
+            _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1600;
+            _this.backgroundImage.scaleY = config.Game.SCREEN_H / 900;
             window.addEventListener('keyup', function (e) {
                 switch (e.code) {
                     case "Space":
@@ -77,6 +80,11 @@ var scenes;
                     if (this.lockPins.length == 0) {
                         config.Game.SCENE_STATE = scenes.State.END;
                     }
+                    var multiplier = 1;
+                    if (this.clawVelocity < 0) {
+                        multiplier = -1;
+                    }
+                    this.clawVelocity += 1 * multiplier;
                 }
             }
             if (this.claw.x <= this.clawMin || this.claw.x >= this.clawMax) {
@@ -85,13 +93,14 @@ var scenes;
         };
         LockPick.prototype.Main = function () {
             var _this = this;
+            this.addChild(this.backgroundImage);
+            this.addChild(this.mouseyJail);
             this.addChild(this.lockBackground);
             this.lockPins.forEach(function (pin) {
                 _this.addChild(pin);
             });
-            this.addChild(new objects.Rectangle(158, 240, 324, 70, "white"));
+            //this.addChild(new objects.Rectangle(158, 240, 324, 70, "white"))
             this.addChild(this.instructionLabel);
-            this.addChild(this.mouseyJail);
             this.addChild(this.claw);
         };
         return LockPick;

@@ -3,8 +3,8 @@ module scenes
     export class End extends objects.Scene
     {
         // PRIVATE INSTANCE MEMBERS
-        endLabel:objects.Label;
         endButton:objects.Button;
+        backgroundImage:createjs.Bitmap;
 
         // PUBLIC PROPERTIES
 
@@ -14,8 +14,11 @@ module scenes
             super();
 
             // initialization
-            this.endLabel = new objects.Label();
-            this.endButton = new objects.Button();
+            this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 400, true);
+
+            this.backgroundImage = new createjs.Bitmap("./Assets/images/background/win.png");    
+            this.backgroundImage.scaleX = config.Game.SCREEN_W/1500;
+            this.backgroundImage.scaleY = config.Game.SCREEN_H/1125;
 
             this.Start();
         }
@@ -24,8 +27,7 @@ module scenes
 
         public Start(): void 
         {
-            this.endLabel = new objects.Label("You Win", "80px","Arial", "Black", 320, 200, true);
-            this.endButton = new objects.Button("./Assets/images/backButton.png", 320, 400, true);
+
             this.Main();
         }        
         
@@ -34,7 +36,7 @@ module scenes
         }
         
         public Main(): void {
-            this.addChild(this.endLabel);
+            this.addChild(this.backgroundImage);
     
             this.addChild(this.endButton);
     
