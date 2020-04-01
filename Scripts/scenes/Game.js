@@ -33,6 +33,8 @@ var scenes;
             _this.backgroundImage.scaleX = config.Game.SCREEN_H / 1080;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 1080;
             _this.playerHealthIndicator = new objects.HealthBar(_this.player);
+            _this.scoreCounter = new objects.Label(undefined, undefined, undefined, "white", 5, 5);
+            config.Game.SCORE = 0;
             _this.Start();
             return _this;
         }
@@ -71,11 +73,13 @@ var scenes;
             if (this.enemyBulletManager.IsCollided(this.player)) {
                 this.player.HP -= 1;
             }
+            this.scoreCounter.text = "Score: " + config.Game.SCORE;
         };
         Game.prototype.Main = function () {
             // this.addChild(this.backgroundImage);       
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator);
+            this.addChild(this.scoreCounter);
         };
         return Game;
     }(objects.Scene));

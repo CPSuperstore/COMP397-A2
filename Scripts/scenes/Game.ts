@@ -11,6 +11,7 @@ module scenes
         playerHealthIndicator:objects.HealthBar;
         spawned:boolean = false;
         backgroundManager:managers.BackgroundManager;
+        scoreCounter:objects.Label;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -32,6 +33,9 @@ module scenes
             this.backgroundImage.scaleX = config.Game.SCREEN_H/1080;
             this.backgroundImage.scaleY = config.Game.SCREEN_H/1080;
             this.playerHealthIndicator = new objects.HealthBar(this.player);
+            this.scoreCounter = new objects.Label(undefined, undefined, undefined, "white", 5, 5);
+
+            config.Game.SCORE = 0;
 
             this.Start();
         }
@@ -75,12 +79,14 @@ module scenes
             if (this.enemyBulletManager.IsCollided(this.player)){
                 this.player.HP -= 1;
             }
+            this.scoreCounter.text = "Score: " + config.Game.SCORE;
         }
         
         public Main(): void {    
             // this.addChild(this.backgroundImage);       
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator)
+            this.addChild(this.scoreCounter)
         }
 
         
