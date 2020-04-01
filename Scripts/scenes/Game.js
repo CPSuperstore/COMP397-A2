@@ -77,7 +77,7 @@ var scenes;
                     if (enemy.HP <= 0) {
                         _this.enemyManager.RemoveEnemy(enemy);
                         config.Game.SCORE++;
-                        if (config.Game.SCORE % 5 == 0) {
+                        if (config.Game.SCORE % 8 == 0) {
                             _this.enemyManager.EnemyCap += 1;
                             _this.SpawnPowerup();
                         }
