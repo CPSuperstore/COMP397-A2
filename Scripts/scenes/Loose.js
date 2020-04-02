@@ -27,6 +27,7 @@ var scenes;
             _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/failed.jpg");
             _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1024;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 600;
+            _this.scoreCounter = new objects.Label("Final Score: " + config.Game.SCORE, undefined, undefined, "white", 320, 100, true);
             _this.Start();
             return _this;
         }
@@ -41,6 +42,7 @@ var scenes;
             this.addChild(this.endLabel);
             this.addChild(this.mouseyJail);
             this.addChild(this.endButton);
+            this.addChild(this.scoreCounter);
             this.endButton.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.START;
             });

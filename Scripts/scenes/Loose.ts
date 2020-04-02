@@ -7,6 +7,7 @@ module scenes
         endButton:objects.Button;
         mouseyJail:createjs.Bitmap;
         backgroundImage:createjs.Bitmap;
+        scoreCounter:objects.Label;
 
         // PUBLIC PROPERTIES
 
@@ -23,7 +24,7 @@ module scenes
             this.backgroundImage = new createjs.Bitmap("./Assets/images/background/failed.jpg");    
             this.backgroundImage.scaleX = config.Game.SCREEN_W/1024;
             this.backgroundImage.scaleY = config.Game.SCREEN_H/600;
-
+            this.scoreCounter = new objects.Label("Final Score: " + config.Game.SCORE, undefined, undefined, "white", 320, 100, true);
 
             this.Start();
         }
@@ -44,6 +45,7 @@ module scenes
             this.addChild(this.endLabel);
             this.addChild(this.mouseyJail)
             this.addChild(this.endButton);
+            this.addChild(this.scoreCounter);
     
             this.endButton.on("click", function() {
                config.Game.SCENE_STATE = scenes.State.START;

@@ -40,6 +40,7 @@ module scenes
     
             this.play.on("click", function() {
                config.Game.SCENE_STATE = scenes.State.GAME;
+               // config.Game.SCENE_STATE = scenes.State.LOOSE;
             });  
     
             this.instructions.on("click", function() {
