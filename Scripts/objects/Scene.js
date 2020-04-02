@@ -32,6 +32,15 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Scene.prototype.PlaySound = function (id, volume) {
+            if (volume === void 0) { volume = 0.9; }
+            var instance = createjs.Sound.play(id);
+            instance.volume = volume;
+            createjs.Sound.on("fileload", function (event) {
+                // var instance = createjs.Sound.play(id);
+                // instance.volume = volume;        
+            }, this);
+        };
         return Scene;
     }(createjs.Container));
     objects.Scene = Scene;

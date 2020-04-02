@@ -39,9 +39,9 @@ var scenes;
             this.addChild(this.backgroundImage);
             this.addChild(this.play);
             this.addChild(this.instructions);
+            var that = this;
             this.play.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.GAME;
-                // config.Game.SCENE_STATE = scenes.State.LOOSE;
             });
             this.instructions.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.INSTRUCTIONS;

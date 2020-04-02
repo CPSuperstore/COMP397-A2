@@ -18,7 +18,7 @@ module scenes
             this.backgroundImage.scaleX = config.Game.SCREEN_W/1500;
             this.backgroundImage.scaleY = config.Game.SCREEN_H/1125;
             this.play = new objects.Button("./Assets/images/gui/start.png", 320, 240, true);     
-            this.instructions = new objects.Button("./Assets/images/gui/instructions.png", 320, 300, true);     
+            this.instructions = new objects.Button("./Assets/images/gui/instructions.png", 320, 300, true);                
             this.Start();
         }
 
@@ -38,9 +38,9 @@ module scenes
             this.addChild(this.play);
             this.addChild(this.instructions);
     
+            let that = this;
             this.play.on("click", function() {
-               config.Game.SCENE_STATE = scenes.State.GAME;
-               // config.Game.SCENE_STATE = scenes.State.LOOSE;
+                config.Game.SCENE_STATE = scenes.State.GAME;
             });  
     
             this.instructions.on("click", function() {

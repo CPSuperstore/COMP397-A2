@@ -60,6 +60,7 @@ var scenes;
                 pu.Update();
                 if (managers.Collision.AABBCheck(pu, _this.player)) {
                     _this.player.HP += 10;
+                    _this.PlaySound("characterPowerup");
                     if (_this.player.HP > _this.player.MaxHP)
                         _this.player.HP = _this.player.MaxHP;
                     _this.removeChild(pu);
@@ -76,6 +77,7 @@ var scenes;
                     enemy.HP -= 1;
                     if (enemy.HP <= 0) {
                         _this.enemyManager.RemoveEnemy(enemy);
+                        _this.PlaySound("enemyDie");
                         config.Game.SCORE++;
                         if (config.Game.SCORE % 8 == 0) {
                             _this.enemyManager.EnemyCap += 1;
@@ -89,6 +91,7 @@ var scenes;
             });
             if (this.enemyBulletManager.IsCollided(this.player)) {
                 this.player.HP -= 1;
+                this.PlaySound("characterDamage");
             }
             this.scoreCounter.text = "Score: " + config.Game.SCORE;
         };

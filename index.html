@@ -40,6 +40,7 @@
     <script src="./node_modules/tweenjs/lib/tweenjs.min.js"></script>
     <script src="./node_modules/soundjs/lib/soundjs.min.js"></script>
     <script src="./node_modules/preloadjs/lib/preloadjs.min.js"></script>
+    <script src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
 
     <!-- GAME SCRIPTS -->
     <script src="./Scripts/config/game.js"></script>
@@ -59,7 +60,7 @@
     <script src="./Scripts/objects/Label.js"></script>
     <script src="./Scripts/objects/Player.js"></script>
     <script src="./Scripts/objects/Rectangle.js"></script>
-    <script src="./Scripts/objects/Vector2.js.js"></script>
+    <script src="./Scripts/objects/Vector2.js"></script>
     <script src="./Scripts/objects/Bullet.js"></script>
     <script src="./Scripts/objects/Enemy.js"></script>
     <script src="./Scripts/objects/HealthBar.js"></script>
@@ -79,5 +80,12 @@
     <script src="./Scripts/scenes/Instructions.js"></script>
 
     <script src="./Scripts/game.js"></script>
+
+    <script>
+        createjs.Sound.registerSound("./Assets/sound/floofie/damage.ogg", "characterDamage");
+        createjs.Sound.registerSound("./Assets/sound/floofie/powerup.ogg", "characterPowerup");
+        createjs.Sound.registerSound("./Assets/sound/enemy/die.ogg", "enemyDie");
+        createjs.Sound.alternateExtensions = ["mp3"];
+    </script>
 </body>
 </html>

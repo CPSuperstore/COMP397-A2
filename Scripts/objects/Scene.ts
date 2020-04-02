@@ -42,5 +42,14 @@ module objects
         public set IsActive(state:boolean){
             this.isActive = state;
         }
+
+        public PlaySound(id:string, volume:number=0.9){
+            var instance = createjs.Sound.play(id);
+            instance.volume = volume;  
+            createjs.Sound.on("fileload", (event:any) => {
+                    // var instance = createjs.Sound.play(id);
+                    // instance.volume = volume;        
+            }, this);
+        }
     }
 }
