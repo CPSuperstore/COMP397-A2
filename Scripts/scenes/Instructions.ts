@@ -27,7 +27,7 @@ module scenes
             In the seccond level, use the space bar to pick the lock
             Push each lock pin to break the lock and rescue mousey
 
-            Staring My Girlfriend's Cat as Queen Floofie!  
+            Starring My Girlfriend's Cat as Queen Floofie!  
             `;
 
             this.titleLabel = new objects.Label("Instructions", "80px","Arial", "Black", 320, 50, true);
