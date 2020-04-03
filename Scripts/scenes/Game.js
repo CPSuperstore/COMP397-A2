@@ -60,7 +60,7 @@ var scenes;
                 pu.Update();
                 if (managers.Collision.AABBCheck(pu, _this.player)) {
                     _this.player.HP += 10;
-                    _this.PlaySound("characterPowerup");
+                    _this.PlaySound("characterPowerup", 1);
                     if (_this.player.HP > _this.player.MaxHP)
                         _this.player.HP = _this.player.MaxHP;
                     _this.removeChild(pu);
@@ -100,6 +100,10 @@ var scenes;
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator);
             this.addChild(this.scoreCounter);
+            if (!config.Game.BACKGROUND_MUSIC) {
+                this.PlaySound("soundtrack", 0.5, -1);
+                config.Game.BACKGROUND_MUSIC = true;
+            }
         };
         return Game;
     }(objects.Scene));

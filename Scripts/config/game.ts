@@ -7,5 +7,6 @@ module config
         public static SCREEN_W = 640;
         public static SCREEN_H = 480;
         public static SCORE = 0;
+        public static BACKGROUND_MUSIC = false;
     }
 }

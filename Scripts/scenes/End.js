@@ -37,6 +37,7 @@ var scenes;
         End.prototype.Main = function () {
             this.addChild(this.backgroundImage);
             this.addChild(this.endButton);
+            this.PlaySound("characterPowerup");
             this.endButton.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.START;
             });

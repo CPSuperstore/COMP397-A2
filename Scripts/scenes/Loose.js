@@ -43,6 +43,7 @@ var scenes;
             this.addChild(this.mouseyJail);
             this.addChild(this.endButton);
             this.addChild(this.scoreCounter);
+            this.PlaySound("enemyDie");
             this.endButton.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.START;
             });

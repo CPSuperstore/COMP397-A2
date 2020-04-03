@@ -43,13 +43,9 @@ module objects
             this.isActive = state;
         }
 
-        public PlaySound(id:string, volume:number=0.9){
-            var instance = createjs.Sound.play(id);
+        public PlaySound(id:string, volume:number=0.7, loops=1){
+            var instance = createjs.Sound.play(id,  {loop:loops});
             instance.volume = volume;  
-            createjs.Sound.on("fileload", (event:any) => {
-                    // var instance = createjs.Sound.play(id);
-                    // instance.volume = volume;        
-            }, this);
         }
     }
 }

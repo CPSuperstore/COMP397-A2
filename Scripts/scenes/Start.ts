@@ -30,7 +30,6 @@ module scenes
         }        
         
         public Update(): void {
-            
         }
         
         public Main(): void {

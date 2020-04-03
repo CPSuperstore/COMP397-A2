@@ -67,7 +67,7 @@ module scenes
                 if (managers.Collision.AABBCheck(pu, this.player)){
                     this.player.HP += 10;
 
-                    this.PlaySound("characterPowerup")
+                    this.PlaySound("characterPowerup", 1)
 
                     if (this.player.HP > this.player.MaxHP)
                         this.player.HP = this.player.MaxHP
@@ -112,6 +112,11 @@ module scenes
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator)
             this.addChild(this.scoreCounter)
+
+            if (!config.Game.BACKGROUND_MUSIC){
+                this.PlaySound("soundtrack", 0.5, -1)
+                config.Game.BACKGROUND_MUSIC = true;
+            }
         }
     }
 }
