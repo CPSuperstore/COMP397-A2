@@ -42,8 +42,12 @@ var scenes;
             this.addChild(this.play);
             this.addChild(this.instructions);
             this.addChild(this.exit);
-            setTimeout(function () { _this.PlaySound("soundtrack", 0.5, -1); }, 1000);
-            var that = this;
+            setTimeout(function () {
+                if (!config.Game.BACKGROUND_MUSIC) {
+                    _this.PlaySound("soundtrack", 0.5, -1);
+                    config.Game.BACKGROUND_MUSIC = true;
+                }
+            }, 1000);
             this.play.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.GAME;
             });

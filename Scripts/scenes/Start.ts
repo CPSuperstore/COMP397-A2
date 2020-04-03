@@ -40,9 +40,13 @@ module scenes
             this.addChild(this.instructions);
             this.addChild(this.exit);
 
-            setTimeout(() => {this.PlaySound("soundtrack", 0.5, -1)}, 1000);
+            setTimeout(() => {
+                if (!config.Game.BACKGROUND_MUSIC){
+                    this.PlaySound("soundtrack", 0.5, -1)
+                    config.Game.BACKGROUND_MUSIC = true;
+                }
+            }, 1000);
     
-            let that = this;
             this.play.on("click", function() {
                 config.Game.SCENE_STATE = scenes.State.GAME;
             });  

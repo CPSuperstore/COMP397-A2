@@ -24,6 +24,7 @@ var scenes;
             _this.endLabel = new objects.Label("You Failed!", "80px", "Arial", "Black", 320, 50, true);
             _this.endButton = new objects.Button("./Assets/images/gui/back.png", 320, 450, true);
             _this.mouseyJail = new objects.Image("./Assets/images/sidekick/mouseyJail.png", config.Game.SCREEN_W / 2, config.Game.SCREEN_H / 2, true);
+            _this.play = new objects.Button("./Assets/images/gui/start.png", 320, 390, true);
             _this.backgroundImage = new createjs.Bitmap("./Assets/images/background/failed.jpg");
             _this.backgroundImage.scaleX = config.Game.SCREEN_W / 1024;
             _this.backgroundImage.scaleY = config.Game.SCREEN_H / 600;
@@ -43,9 +44,13 @@ var scenes;
             this.addChild(this.mouseyJail);
             this.addChild(this.endButton);
             this.addChild(this.scoreCounter);
-            this.PlaySound("enemyDie");
+            this.addChild(this.play);
+            this.PlaySound("characterDamage");
             this.endButton.on("click", function () {
                 config.Game.SCENE_STATE = scenes.State.START;
+            });
+            this.play.on("click", function () {
+                config.Game.SCENE_STATE = scenes.State.GAME;
             });
         };
         return Loose;
