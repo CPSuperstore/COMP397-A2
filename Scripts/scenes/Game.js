@@ -100,10 +100,10 @@ var scenes;
             this.addChild(this.player);
             this.addChild(this.playerHealthIndicator);
             this.addChild(this.scoreCounter);
-            if (!config.Game.BACKGROUND_MUSIC) {
-                this.PlaySound("soundtrack", 0.5, -1);
-                config.Game.BACKGROUND_MUSIC = true;
-            }
+            // if (!config.Game.BACKGROUND_MUSIC){
+            //     this.PlaySound("soundtrack", 0.5, -1)
+            //     config.Game.BACKGROUND_MUSIC = true;
+            // }
         };
         return Game;
     }(objects.Scene));
